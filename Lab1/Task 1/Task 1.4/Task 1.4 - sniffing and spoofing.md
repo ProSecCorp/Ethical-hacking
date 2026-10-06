@@ -1,4 +1,4 @@
-![[Pasted image 20261004143926.png]]
+![Pasted image 20261004143926](../../Pics/Pasted%20image%2020261004143926.png)
 
 Host A executes ping towards X; attacker intercepts the request and replies faking to be X
 
@@ -33,7 +33,7 @@ I execute the script, then from Host A I ping three different IPs:
 
 ## ping -c 3 -W 2 1.2.3.4
 
-![[Pasted image 20261004150325.png]]
+![Pasted image 20261004150325](../../Pics/Pasted%20image%2020261004150325.png)
 
 ```bash
 #Host A
@@ -65,7 +65,7 @@ From 10.9.0.5 icmp_seq=3 Destination Host Unreachable
 IP belongs to the same LAN. Host A searches directly the MAC through ARP; no one replies, so the ICMP request remains on waiting and is not transmitted on the bridge.
 ## ping -c 3 -W 8.8.8.8
 
-![[Pasted image 20261004150815.png]]
+![Pasted image 20261004150815](../../Pics/Pasted%20image%2020261004150815.png)
 
 ```bash
 #host A

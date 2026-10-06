@@ -1,4 +1,4 @@
-![[Pasted image 20261004125757.png]]
+![Pasted image 20261004125757](../../Pics/Pasted%20image%2020261004125757.png)
 
 ```python
 from scapy.all import *
@@ -41,7 +41,7 @@ root@archlinux:/volumes# ip route get 8.8.8.8
 
 So on Wireshark I select the interface `enp5s0`;
 
-![[Pasted image 20261004141857.png]]
+![Pasted image 20261004141857](../../Pics/Pasted%20image%2020261004141857.png)
 
 while on attaker shell:
 ```bash
