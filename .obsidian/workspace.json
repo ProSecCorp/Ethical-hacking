@@ -1,0 +1,214 @@
+{
+  "main": {
+    "id": "33bade4df43d6d62",
+    "type": "split",
+    "children": [
+      {
+        "id": "c70df1211e681f1e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e725343d8b67d1ad",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Lab1/Readme.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Readme"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "dfa5dc05a2755fc6",
+    "type": "split",
+    "children": [
+      {
+        "id": "d7464a333cbcc621",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0f03ddb5e8a0e743",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Esplora file"
+            }
+          },
+          {
+            "id": "d0db292363e2f4ad",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Ricerca"
+            }
+          },
+          {
+            "id": "66536a4a5dcf5848",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Segnalibri"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "ae7897349cfecb7e",
+    "type": "split",
+    "children": [
+      {
+        "id": "73ea559af19371cf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "10e557d49af9ee36",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Lab1/Task 1/Task 1.4/Task 1.4 - sniffing and spoofing.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Riferimenti"
+            }
+          },
+          {
+            "id": "521bc9d29674c63a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Lab1/Task 1/Task 1.4/Task 1.4 - sniffing and spoofing.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Collegamenti in uscita"
+            }
+          },
+          {
+            "id": "3605ec0ff18a4383",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etichette"
+            }
+          },
+          {
+            "id": "18303f9e62dcfe4b",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Tutte le proprietà"
+            }
+          },
+          {
+            "id": "1f1c6281550aef30",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Lab1/Task 1/Task 1.4/Task 1.4 - sniffing and spoofing.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Struttura"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Apri selettore rapido": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota giornaliera": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false,
+      "bases:Crea nuova Base": false
+    }
+  },
+  "active": "0f03ddb5e8a0e743",
+  "lastOpenFiles": [
+    "Lab1/Readme.pdf",
+    "Lab1/Pics/Pasted image 20261004125100.png",
+    "Lab1/Task 1/Task 1.4/Task 1.4 - sniffing and spoofing.md",
+    "Lab1/Pics",
+    "Lab1/Pics/Pasted image 20261004150815.png",
+    "Lab1/Pics/Pasted image 20261004150325.png",
+    "Lab1/Labsetup/volumes/sniffer.py",
+    "Lab1/Labsetup/volumes/sniff_spoof.py",
+    "Lab1/Task 1/Task 1.4/sniff_spoof.py",
+    "Lab1/Pics/Pasted image 20261004143926.png",
+    "Lab1/Task 1/Task 1.3/Task 1.3 - building a Traceroute.md",
+    "Lab1/Pics/Pasted image 20261004141857.png",
+    "Lab1/Labsetup/volumes/traceroute.py",
+    "Lab1/Task 1/Task 1.3/traceroute.py",
+    "Lab1/Pics/Pasted image 20261004125757.png",
+    "Lab1/Task 1/Task 1.2/Task 1.2 - source falsification.md",
+    "Lab1/Pics/Pasted image 20261004125335.png",
+    "Lab1/Labsetup/volumes/spoof_icmp.py",
+    "Lab1/lab1.md",
+    "Lab1/Task 1/Task 1.1/Task 1.1.md",
+    "Lab1/Task 1/Task 1.2/spoof_icmp.py",
+    "Lab1/Task 1/Task 1.1/sniffer.py"
+  ]
+}
