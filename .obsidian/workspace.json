@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lab2 - TCPSpoofing/Guida per pigri.md",
+                "file": "Lab2 - TCPSpoofing/Task 1/Task 1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Guida per pigri"
+              "title": "Task 1"
             }
           }
         ]
@@ -190,8 +190,10 @@
   },
   "active": "e725343d8b67d1ad",
   "lastOpenFiles": [
-    "Lab2 - TCPSpoofing/TCPSpoofing_Readme.pdf",
+    "Lab2 - TCPSpoofing/Labsetup/volumes/synflood",
     "Lab2 - TCPSpoofing/Guida per pigri.md",
+    "Lab2 - TCPSpoofing/Task 1/Task 1.md",
+    "Lab2 - TCPSpoofing/TCPSpoofing_Readme.pdf",
     "Lab1/Readme.pdf",
     "Lab1/Pics/Pasted image 20261004125100.png",
     "Lab1/Task 1/Task 1.4/Task 1.4 - sniffing and spoofing.md",
@@ -212,7 +214,6 @@
     "Lab1/Labsetup/volumes/spoof_icmp.py",
     "Lab1/lab1.md",
     "Lab1/Task 1/Task 1.1/Task 1.1.md",
-    "Lab1/Task 1/Task 1.2/spoof_icmp.py",
-    "Lab1/Task 1/Task 1.1/sniffer.py"
+    "Lab1/Task 1/Task 1.2/spoof_icmp.py"
   ]
 }
