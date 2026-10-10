@@ -11,12 +11,14 @@
             "id": "e725343d8b67d1ad",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "Lab1/Readme.pdf"
+                "file": "Lab2 - TCPSpoofing/Guida per pigri.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "Readme"
+              "icon": "lucide-file",
+              "title": "Guida per pigri"
             }
           }
         ]
@@ -186,8 +188,10 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "0f03ddb5e8a0e743",
+  "active": "e725343d8b67d1ad",
   "lastOpenFiles": [
+    "Lab2 - TCPSpoofing/TCPSpoofing_Readme.pdf",
+    "Lab2 - TCPSpoofing/Guida per pigri.md",
     "Lab1/Readme.pdf",
     "Lab1/Pics/Pasted image 20261004125100.png",
     "Lab1/Task 1/Task 1.4/Task 1.4 - sniffing and spoofing.md",
