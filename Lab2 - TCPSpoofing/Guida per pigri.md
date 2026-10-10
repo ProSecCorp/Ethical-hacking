@@ -27,7 +27,7 @@ Credenziali previste dal PDF: `seed` / `dees`. Esci da Telnet prima delle prove 
 
 ### 2. Task 1 — SYN flood
 
-Nel file montato [synflood_draft.py](/home/alessandrovulcu/Documenti/Università/Ethical-hacking/Lab2 - TCPSpoofing/Labsetup/volumes/synflood_draft.py), sostituisci righe 7–8:
+Nel file montato [synflood_draft.py], sostituisci righe 7–8:
 
 ```
 ip = IP(dst="10.9.0.5")
@@ -66,7 +66,7 @@ Annota: numero connessioni `SYN-RECV`, esito Telnet, durata. Se Telnet riesce, p
 docker exec victim-10.9.0.5 sysctl -w net.ipv4.tcp_max_syn_backlog=80
 ```
 
-Per Task 1.2 ripristina prima valore originale annotato al passo 1. Compila programma fornito [synflood.c](/home/alessandrovulcu/Documenti/Università/Ethical-hacking/Lab2 - TCPSpoofing/Labsetup/volumes/synflood.c):
+Per Task 1.2 ripristina prima valore originale annotato al passo 1. Compila programma fornito [synflood.c]:
 
 ```
 docker exec seed-attacker bash -lc 'gcc -o /volumes/synflood /volumes/synflood.c'
