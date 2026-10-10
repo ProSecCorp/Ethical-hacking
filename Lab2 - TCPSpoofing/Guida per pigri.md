@@ -1,13 +1,9 @@
-Ho analizzato /home/alessandrovulcu/Documenti/Università/Ethical-hacking/Lab2 - TCPSpoofing/TCPSpoofing_Readme.pdf e [docker-compose.yml](/home/alessandrovulcu/Documenti/Università/Ethical-hacking/Lab2 - TCPSpoofing/Labsetup/docker-compose.yml). Configurazione Compose valida; container del lab **non ancora avviati**. Avviso `version is obsolete` innocuo.
-
 |Ruolo|Container|IP|
 |---|---|---|
 |Attaccante|`seed-attacker`|Rete host; verificare indirizzo|
 |Vittima Telnet|`victim-10.9.0.5`|`10.9.0.5`|
 |Client|`user1-10.9.0.6`|`10.9.0.6`|
 |Secondo client|`user2-10.9.0.7`|`10.9.0.7`|
-
-Esegui attacchi **solo sulla rete Docker del lab**. Procediamo per prove, registrando risultato di ciascuna.
 
 ### 1. Avvio e controllo
 
