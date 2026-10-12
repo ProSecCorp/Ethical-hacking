@@ -27,7 +27,7 @@ docker exec victim-10.9.0.5 ip tcp_metrics flush
 Reducing the backlog to 80 was enough to saturate all the available spots.
 Now, during the attack execution, we can see that the number of incomplete connections now is `61` and the Telnet connections now fails (stays on `Trying 10.9.0.5...`).
 
-Note that running at least four instances of `synflood_draft.py` also does the trick.
+Note that running at least four instances of `synflood_draft.py` also does the trick without shrinking the backlog.
 ## Task 1.2
 
 Now I try to execute the C code.  The number of incomplete connections is now `129`, but the Telnet connection now fails until the attack finishes.
@@ -35,7 +35,7 @@ Now I try to execute the C code.  The number of incomplete connections is now `1
 **Observations:**
 With the original `tcp_max_syn_backlog` value of 2048, the Python attack produced 129 observed `SYN-RECV` connections, but the legitimate Telnet connection succeeded. After reducing the backlog to 80, approximately 61 incomplete connections were observed and Telnet remained at `Trying 10.9.0.5...`. This is consistent with the lab’s description of reserving about one quarter of the queue for previously proven clients.
 
-After restoring the original backlog, the C attack again produced 129 observed incomplete connections, but Telnet failed while the attack ran. The `SYN-RECV` count is only an instantaneous occupancy measurement. Incomplete connections eventually expire and free slots; the likely difference is that the C program sends replacement SYN packets faster than the Python/Scapy program, leaving fewer opportunities for the legitimate connection. When the attack stops, Telnet succeeds again.
+After restoring the original backlog, the C attack again produced 129 observed incomplete connections, but Telnet failed while the attack ran. The `SYN-RECV` count is only an instantaneous occupancy measurement. Incomplete connections eventually expire and free slots; the likely difference is that the C program sends replacement SYN packets faster than the Python/Scapy program, leaving fewer opportunities for the legitimate connection. In fact, with only one instance Telnet eventually succeeds before timeout. When the attack stops, Telnet succeeds again.
 
 ## Task 1.3
 Enable SYN cookies mechanism
