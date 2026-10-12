@@ -27,7 +27,7 @@ docker exec victim-10.9.0.5 ip tcp_metrics flush
 Reducing the backlog to 80 was enough to saturate all the available spots.
 Now, during the attack execution, we can see that the number of incomplete connections now is `61` and the Telnet connections now fails (stays on `Trying 10.9.0.5...`).
 
-Note that running at least four instances of `synflood_draft.py` also does the trick.
+Note that running at least four instances of `synflood_draft.py` also does the trick without shrinking the backlog.
 ## Task 1.2
 
 Now I try to execute the C code.  The number of incomplete connections is now `129`, but the Telnet connection now fails until the attack finishes.
