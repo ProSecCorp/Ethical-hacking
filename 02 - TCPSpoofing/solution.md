@@ -87,7 +87,9 @@ For this attack we used Wireshark to gather the requested information.
 
 We first authenticated ourselves on telnet and then we look at the last packet sent in the direction we want to RESET the connection (in this case from 10.9.0.6 to 10.9.0.5).
 
-We take the value shown in `sequence number (raw)` and set it as the sequence number in our script, together with the `R` flag.
+We take the value shown in `sequence number (raw)` and set it as the sequence number in our script (we can do that because the last ACK hasn't any payload aka it's `=0`), together with the `R` flag.
+
+Let's put the right IPs and ports (again, watching Wireshark).
 
 The final program to manually spoof would look like this:
 
