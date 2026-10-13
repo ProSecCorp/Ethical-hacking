@@ -20,10 +20,17 @@ while True:
     send(pkt, verbose = 0)
 ```
 
+```bash
+seed@VM:~/.../volumes$ docker exec -it victim-10.9.0.5 sysctl net.ipv4.tcp_max_syn_backlog
+net.ipv4.tcp_max_syn_backlog = 256
+seed@VM:~/.../volumes$ docker exec -it victim-10.9.0.5 sysctl -a | grep syncookies
+net.ipv4.tcp_syncookies = 0
+```
+
 A first check on the victim machine revealed that the size of the queue was pretty big: `net.ipv4.tcp_max_syn_backlog = 256` and that the cookies were disabled `net.ipv4.tcp_syncookies = 0`.
 
-```
-seed@VM:~/.../volumes$ docker exec -it victim-10.9.0.5 netstat -tna | grep SYN_RECV | wc -l
+```bash
+docker exec -it victim-10.9.0.5 netstat -tna | grep SYN_RECV | wc -l
 128
 ```
 
@@ -36,8 +43,8 @@ We were able to prevent any known connection to happen only by flushing (`ip tcp
 
 We can try reduce the queue size to 80
 ```bash
-docker exec victim-10.9.0.5 \
-  sysctl -w net.ipv4.tcp_max_syn_backlog=80
+docker exec victim-10.9.0.5 sysctl -w net.ipv4.tcp_max_syn_backlog=80
+net.ipv4.tcp_max_syn_backlog = 256
 docker exec victim-10.9.0.5 ip tcp_metrics flush
 ```
 
@@ -59,7 +66,7 @@ Also, regarding the reserved "proven destination" queue space, we were not alway
 
 # TASK 1.3
 
-```
+```bash
 seed@VM:~/.../volumes$ docker exec -it victim-10.9.0.5  sysctl -w net.ipv4.tcp_syncookies=1
 ```
 
