@@ -44,7 +44,7 @@ We were able to prevent any known connection to happen only by flushing (`ip tcp
 We can try reduce the queue size to 80
 ```bash
 seed@VM:~/.../volumes$ docker exec victim-10.9.0.5 sysctl -w net.ipv4.tcp_max_syn_backlog=80
-net.ipv4.tcp_max_syn_backlog = 256
+net.ipv4.tcp_max_syn_backlog = 80
 seed@VM:~/.../volumes$ docker exec victim-10.9.0.5 ip tcp_metrics flush
 ```
 
@@ -55,12 +55,12 @@ Now, during the attack execution, we can see that the number of incomplete conne
 
 We reset the backlog size to its original value (256, then flush just to be sure)
 ```bash
-docker exec victim-10.9.0.5 \
-  sysctl -w net.ipv4.tcp_max_syn_backlog=256
-docker exec victim-10.9.0.5 ip tcp_metrics flush
+seed@VM:~/.../volumes$ docker exec victim-10.9.0.5 sysctl -w net.ipv4.tcp_max_syn_backlog=256
+net.ipv4.tcp_max_syn_backlog = 256
+seed@VM:~/.../volumes$ docker exec victim-10.9.0.5 ip tcp_metrics flush
 ```
 
-The proposed C file proven to be way faster than the python one, but we need at least two instancies running of the program to get the attack work.
+The proposed C file  proven to be way faster than the python one, but we need at least two instancies running of the program to get the attack work.
 
 Also, regarding the reserved "proven destination" queue space, we were not always able to connect through telnet even if the ip address of the source was in that queue, proving the higher efficiency of C code in this case.
 
