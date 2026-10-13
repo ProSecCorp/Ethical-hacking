@@ -122,7 +122,8 @@ send(pkt,verbose=0)
 ```
 
 Results:
-[Results](Pictures/task_2/rst_manual_sent.PNG)
+
+[Wireshark log](Pictures/task_2/rst_manual_sent.PNG)
 
 ```bash
 seed@abb6db62e897:~$ Connection closed by foreign host.
