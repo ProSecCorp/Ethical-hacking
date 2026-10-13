@@ -176,14 +176,17 @@ Password:
 Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-54-generic x86_64)
 ```
 
+### Results
+
 We start the script, then we can see that just after typing any digit the connection will be closed due to the received RST.
 
+(Wireshark log)[Pictures/task_2/rst_auto_sent.PNG]
+
+Client console:
 ```bash
 seed@abb6db62e897:~$ aConnection closed by foreign host.
 root@472341f5fb4b:/# 
 ```
-
-(Wireshark log)[Pictures/task_2/rst_auto_sent.PNG]
 
 # TASK 3
 
