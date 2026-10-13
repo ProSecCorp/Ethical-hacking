@@ -42,7 +42,7 @@ docker exec victim-10.9.0.5 ip tcp_metrics flush
 ```
 
 Reducing the backlog to 80 was enough to saturate all the available spots.
-Now, during the attack execution, we can see that the number of incomplete connections now is `61` and the Telnet connections now fails (stays on `Trying 10.9.0.5...`).
+Now, during the attack execution, we can see that the number of incomplete connections now is `61` and the Telnet connections now fails (stays on `Trying 10.9.0.5...`, eventually goes in timeout).
 
 # TASK 1.2
 
