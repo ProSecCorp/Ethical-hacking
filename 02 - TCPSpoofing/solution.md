@@ -20,23 +20,18 @@ while True:
     send(pkt, verbose = 0)
 ```
 
-A first check on the victim machine revealed that the size of the queue was pretty big: `net.ipv4.tcp_max_syn_backlog = 1024` and that the cookies were disabled `net.ipv4.tcp_syncookies = 0`.
+A first check on the victim machine revealed that the size of the queue was pretty big: `net.ipv4.tcp_max_syn_backlog = 256` and that the cookies were disabled `net.ipv4.tcp_syncookies = 0`.
 
 ```
-root@victim-10:/# netstat -tna | grep SYN_RECV | wc -l
-129
-root@victim-10:/# ss -n state syn-recv sport = :23 | wc -l
-RTNETLINK answers: Invalid argument
-RTNETLINK answers: Invalid arguments
-130
+seed@VM:~/.../volumes$ docker exec -it victim-10.9.0.5 netstat -tna | grep SYN_RECV | wc -l
+128
 ```
 
-After a minute or so, we tried to view the status of the queue, however we noticed that even if the max size of the queue was set to 1024, the command show that only around 129/130 SYN_RECV requests were present inside it.
+After a minute or so, we tried to view the status of the queue, however we noticed that even if the max size of the queue was set to 1024, the command show that only around 128/130 SYN_RECV requests were present inside it.
 
-Anyway this was sufficient to successfully complete the attack, because when we were not able to connect to the victim machine through a telnet connection.
+We were able to connect via Telnet with only one instance running of `synflood_draft.py`, but not with at least three instances.
 
 Also the kernel mitigation mechanism proven to be effective to allow already know connections to successfully complete.
-
 We were able to prevent any known connection to happen only by flushing (`ip tcp_metrics flush`) the reserved queue space.
 
 # TASK 1.2
