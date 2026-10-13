@@ -102,7 +102,7 @@ seed@abb6db62e897:~$
 
 Tip: complete the login step to avoid incurring in a time out of the connection.
 
-We take the value shown in `sequence number (raw)` and set it as the sequence number in our script (we can do that because the last ACK hasn't any payload aka it's `=0`), together with the `R` flag.
+We take the [value shown in `sequence number (raw)`](Pictures/task_2/first_seqn_example.PNG) and set it as the sequence number in our script (we can do that because the last ACK hasn't any payload aka it's `=0`), together with the `R` flag.
 
 Let's put the right IPs and ports (again, watching Wireshark).
 
@@ -122,7 +122,7 @@ send(pkt,verbose=0)
 ```
 
 Results:
-[Results]()
+[Results](Pictures/task_2/rst_manual_sent.PNG)
 
 ```bash
 seed@abb6db62e897:~$ Connection closed by foreign host.
