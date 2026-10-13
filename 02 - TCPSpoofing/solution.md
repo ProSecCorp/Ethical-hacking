@@ -301,8 +301,8 @@ We can see that the command was successfully ran on the victim's system.
 
 ```bash
 seed@VM:~/.../volumes$ docker exec -it victim-10.9.0.5 /bin/bash
-root@abb6db62e897:/# ls /home/seed
-autoHacked.txt
+root@abb6db62e897:/# cat /home/seed/autoHacked.txt
+nano
 ```
 
 The session hijacking causes a desync of the client and the server. This is because the client receives an ACK for a packet it never sent.
