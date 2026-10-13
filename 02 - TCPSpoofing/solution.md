@@ -34,6 +34,16 @@ We were able to connect via Telnet with only one instance running of `synflood_d
 Also the kernel mitigation mechanism proven to be effective to allow already know connections to successfully complete.
 We were able to prevent any known connection to happen only by flushing (`ip tcp_metrics flush`) the reserved queue space.
 
+We can try reduce the queue size to 80
+```bash
+docker exec victim-10.9.0.5 \
+  sysctl -w net.ipv4.tcp_max_syn_backlog=80
+docker exec victim-10.9.0.5 ip tcp_metrics flush
+```
+
+Reducing the backlog to 80 was enough to saturate all the available spots.
+Now, during the attack execution, we can see that the number of incomplete connections now is `61` and the Telnet connections now fails (stays on `Trying 10.9.0.5...`).
+
 # TASK 1.2
 
 As written, the proposed C file proven to be way faster than the python one, fullfilling the victim queue in far less time.
