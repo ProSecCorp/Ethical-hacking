@@ -59,6 +59,10 @@ Also, regarding the reserved "proven destination" queue space, we were not alway
 
 # TASK 1.3
 
+```
+seed@VM:~/.../volumes$ docker exec -it victim-10.9.0.5  sysctl -w net.ipv4.tcp_syncookies=1
+```
+
 Enabling the SYN cookie mechanism allowed us to connect smoothly without issues through telnet even if the source IP address is not among the ones in the "proven destinations" queue and the attack is launch using python or C.
 
 # TASK 2
