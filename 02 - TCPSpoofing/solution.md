@@ -121,7 +121,7 @@ ls(pkt)
 send(pkt,verbose=0)
 ```
 
-### Results:
+### Results
 
 [Wireshark log](Pictures/task_2/rst_manual_sent.PNG)
 
