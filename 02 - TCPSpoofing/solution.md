@@ -121,16 +121,19 @@ ls(pkt)
 send(pkt,verbose=0)
 ```
 
-Results:
+### Results:
 
 [Wireshark log](Pictures/task_2/rst_manual_sent.PNG)
 
+Client console:
 ```bash
 seed@abb6db62e897:~$ Connection closed by foreign host.
 root@472341f5fb4b:/# 
 ```
 
 ## Automatic
+
+
 
 # TASK 3
 
