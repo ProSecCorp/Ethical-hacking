@@ -74,6 +74,13 @@ Enabling the SYN cookie mechanism allowed us to connect smoothly without issues 
 
 # TASK 2
 
+To open a console terminal of a client (user1 in this case):
+
+```bash
+seed@VM:~/.../volumes$ docker exec -it user1-10.9.0.6 /bin/bash
+root@472341f5fb4b:/# 
+```
+
 ## Manual
 
 For this attack we used Wireshark to gather the requested information.
