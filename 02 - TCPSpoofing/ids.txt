@@ -1,4 +1,0 @@
-7b12586cf715 user1-10.9.0.6
-8e48f6db5e18 user2-10.9.0.7
-b0fe36ef8974 victim-10.9.0.5
-bb321e0f47bc seed-attacker
