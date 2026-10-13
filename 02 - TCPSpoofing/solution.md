@@ -96,6 +96,8 @@ Ubuntu 20.04.1 LTS
 abb6db62e897 login: seed
 Password: 
 Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-54-generic x86_64)
+
+seed@abb6db62e897:~$
 ```
 
 Tip: complete the login step to avoid incurring in a time out of the connection.
@@ -121,6 +123,11 @@ send(pkt,verbose=0)
 
 Results:
 [Results]()
+
+```bash
+seed@abb6db62e897:~$ Connection closed by foreign host.
+root@472341f5fb4b:/# 
+```
 
 ## Automatic
 
