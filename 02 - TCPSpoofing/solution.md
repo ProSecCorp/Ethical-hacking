@@ -43,9 +43,9 @@ We were able to prevent any known connection to happen only by flushing (`ip tcp
 
 We can try reduce the queue size to 80
 ```bash
-docker exec victim-10.9.0.5 sysctl -w net.ipv4.tcp_max_syn_backlog=80
+seed@VM:~/.../volumes$ docker exec victim-10.9.0.5 sysctl -w net.ipv4.tcp_max_syn_backlog=80
 net.ipv4.tcp_max_syn_backlog = 256
-docker exec victim-10.9.0.5 ip tcp_metrics flush
+seed@VM:~/.../volumes$ docker exec victim-10.9.0.5 ip tcp_metrics flush
 ```
 
 Reducing the backlog to 80 was enough to saturate all the available spots.
