@@ -298,6 +298,8 @@ root@abb6db62e897:/# ls /home/seed
 autoHacked.txt
 ```
 
+The session hijacking causes a desync of the client and the server. This is because the client receives an ACK for a packet it never sent.
+
 # TASK 4
 
 For the last task we want to refer to some of the steps we used in task 3.
