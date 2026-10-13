@@ -180,7 +180,7 @@ Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-54-generic x86_64)
 
 We start the script, then we can see that just after typing any digit the connection will be closed due to the received RST.
 
-(Wireshark log)[Pictures/task_2/rst_auto_sent.PNG]
+[Wireshark log](Pictures/task_2/rst_auto_sent.PNG)
 
 Client console:
 ```bash
