@@ -39,8 +39,17 @@ We edit the js code accordingly.
 
 # 3.6 - Task 5
 
+We need to complete the given file by looking for:
+- the **content**: found by intercepting a edit request
+- the **samyGuid**: found also by intercepting a edit request made on the Samy profile or by writing `elgg.session.user.guid` on the web console when logged on the samy profile
+- the edit request **url**: found also by intercepting the edit request made
+
+After have edited the file we put the content inside `<script>` tags in the About Me section of Samy and try to view it while being logged as another user.
 
 # 3.7 - Task 6
 
+For this task we merge Task 4 and Task 5 with the script provided to copy the work itself over and over.
 
+N.B. Remember to encode ONLY the wormcode (headtag + jscode + tailtag).
 
+# 4 - Task 7
