@@ -47,7 +47,33 @@ admin'; UPDATE credential SET Salary=25000 WHERE Name = "Alice"#
 However the PHP code has an implicit countermeasure that will cause this to fail; by using the `mysqli::query()` method we are asking the server to execute only **ONE** query, but we are giving **TWO**, so the server will return an error.
 
 ## 3.3 - Task 3
+
 ### Task 3.1
+To achieve this we first log as alice with `alice` and `seedalice` or by exploiting SQL injection.
+Then we want to put on the first field of the edit page, which in this case is the *Nickname* field the following text:
+```
+',salary=25000 where name="Alice"#
+```
+
+In this way, we are updating our salary.
+
 ### Task 3.2
+As simple as to follow the preceding task, we modify it by writing:
+```
+',salary=1 where name="Boby"#
+```
+
+thus changing the condition to edit `Boby` profile.
+
 ### Task 3.3
+As the last part of this task here, we first test the login of Boby with `Boby` and `seedboby`.
+After checking that it works, we can then work from Alice perspective:
+- we log in as Alice;
+- looking at the code in *unsafe_edit_backend.php* we can see that `Phone Number` is placed after `password` when building the update query; we can take advantage of this flaw.
+- we then put into the edit form, `' where name="boby"#` into the Phone Number field and the new password into the password field. Et voilà!
+
+Now we are able to login into Boby profile with the new password.
+
+**N.B.:** to be sure of inserting the password correctly inside the password field, we can change the type of the field from password to text from the devtools section of the page.
+
 ## Task 4
